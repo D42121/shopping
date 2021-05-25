@@ -62,6 +62,13 @@
 				<th>e-mail</th>
 				<td><input type="text" name="email" value="ichiro@abc.com" /></td>
 			</tr>
+			<tr>
+				<th>配送日</th>
+				<td><input type="text" name="year" size="5" value="2021" />年
+					<input type="text" name="month" size="5" value="1" />月
+					<input type="text" name="date" size="5" value="1" />日
+				</td>
+			</tr>
 		</table>
 		<input type="submit" value="確認画面へ" />
 	</form>

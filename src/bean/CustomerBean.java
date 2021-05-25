@@ -14,12 +14,39 @@ public class CustomerBean {
 	private String address; // 住所
 	private String tel;     // 電話番号
 	private String email;   // 電子メールアドレス
+	private int year;		//配送年
+	private int month;		//配送月
+	private int date;		//配送日
 
 	/**
 	 * デフォルトコンストラクタ
 	 */
 	public CustomerBean() {
 
+	}
+
+	/**
+	 *変更コンストラクタ
+	 * @param code
+	 * @param name
+	 * @param address
+	 * @param tel
+	 * @param email
+	 * @param year
+	 * @param month
+	 * @param date
+	 */
+	public CustomerBean(int code, String name, String address, String tel, String email, int year, int month,
+			int date) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.address = address;
+		this.tel = tel;
+		this.email = email;
+		this.year = year;
+		this.month = month;
+		this.date = date;
 	}
 
 	/**
@@ -30,20 +57,47 @@ public class CustomerBean {
 	 * @param tel     電話番号
 	 * @param email   電子メールアドレス
 	 */
-	public CustomerBean(int code, String name, String address, String tel, String email) {
+	/*public CustomerBean(int code, String name, String address, String tel, String email) {
 		this.code = code;
 		this.name = name;
 		this.address = address;
 		this.tel = tel;
 		this.email = email;
 	}
+	*/
 
 	/**
 	 * アクセサメソッド群
 	 */
 
+
+
 	public int getCode() {
 		return code;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getDate() {
+		return date;
+	}
+
+	public void setDate(int date) {
+		this.date = date;
 	}
 
 	public void setCode(int code) {
