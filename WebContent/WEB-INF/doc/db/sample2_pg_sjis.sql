@@ -9,7 +9,8 @@ CREATE TABLE item
   code SERIAL PRIMARY KEY,
   category_code INTEGER,
   name TEXT,
-  price INTEGER
+  price INTEGER,
+  detail TEXT
 );
 CREATE TABLE category
 (
@@ -29,7 +30,8 @@ CREATE TABLE ordered
   code SERIAL PRIMARY KEY,
   customer_code INTEGER,
   ordered_date DATE,
-  total_price INTEGER
+  total_price INTEGER,
+  delivery_date TEXT
 );
 CREATE TABLE ordered_detail
 (
@@ -42,14 +44,14 @@ INSERT INTO category(name) VALUES('本');
 INSERT INTO category(name) VALUES('DVD');
 INSERT INTO category(name) VALUES('ゲーム');
 
-INSERT INTO item(category_code, name, price) VALUES(1, 'Javaの基本', 2500);
-INSERT INTO item(category_code, name, price) VALUES(1, 'MLB Fun', 980);
-INSERT INTO item(category_code, name, price) VALUES(1, '料理BOOK!', 1200);
+INSERT INTO item(category_code, name, price, detail) VALUES(1, 'Javaの基本', 2500, aa);
+INSERT INTO item(category_code, name, price, detail) VALUES(1, 'MLB Fun', 980, ii);
+INSERT INTO item(category_code, name, price, detail) VALUES(1, '料理BOOK!', 1200, uu);
 
-INSERT INTO item(category_code, name, price) VALUES(2, 'なつかしのアニメシリーズ', 2000);
-INSERT INTO item(category_code, name, price) VALUES(2, 'The Racer', 1000);
-INSERT INTO item(category_code, name, price) VALUES(2, 'Space Wars 3', 1800);
+INSERT INTO item(category_code, name, price, detail) VALUES(2, 'なつかしのアニメシリーズ', 2000, ee);
+INSERT INTO item(category_code, name, price, detail) VALUES(2, 'The Racer', 1000, oo);
+INSERT INTO item(category_code, name, price, detail) VALUES(2, 'Space Wars 3', 1800, kk);
 
-INSERT INTO item(category_code, name, price) VALUES(3, 'パズルゲーム', 780);
-INSERT INTO item(category_code, name, price) VALUES(3, 'Invader Fighter', 3400);
-INSERT INTO item(category_code, name, price) VALUES(3, 'Play the BascketBall', 2200);
+INSERT INTO item(category_code, name, price, detail) VALUES(3, 'パズルゲーム', 780, ii);
+INSERT INTO item(category_code, name, price, detail) VALUES(3, 'Invader Fighter', 3400, uu);
+INSERT INTO item(category_code, name, price, detail) VALUES(3, 'Play the BascketBall', 2200, ee);
