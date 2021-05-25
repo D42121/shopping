@@ -69,12 +69,17 @@ public class OrderServlet extends HttpServlet {
 			String address = request.getParameter("address");
 			String tel = request.getParameter("tel");
 			String email = request.getParameter("email");
+			int year = Integer.parseInt(request.getParameter("year"));
+			int month = Integer.parseInt(request.getParameter("month"));
+			int date = Integer.parseInt(request.getParameter("date"));
 			CustomerBean customer = new CustomerBean();
 			customer.setName(name);
 			customer.setAddress(address);
 			customer.setTel(tel);
 			customer.setEmail(email);
-
+			customer.setYear(year);
+			customer.setMonth(month);
+			customer.setDate(date);
 			// セッションスコープに顧客情報を登録
 			session.setAttribute("customer", customer);
 			// 確認画面に遷移
