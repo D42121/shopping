@@ -53,6 +53,10 @@
 			<th>e-mail</th>
 			<td>${customer.email}</td>
 		</tr>
+		<tr>
+			<th>配送日</th>
+			<td>${customer.year }年${customer.month}月${customer.date}日</td>
+		</tr>
 	</table>
 
 	<form action="/shopping/OrderServlet?action=order" method="post">
