@@ -13,6 +13,7 @@ public class ItemBean {
 	private String name;  // 商品名
 	private int price;    // 価格
 	private int quantity; // 数量
+	private String detail; //商品詳細
 
 	/**
 	 * デフォルトコンストラクタ
@@ -43,6 +44,11 @@ public class ItemBean {
 	public ItemBean(int code, String name, int price, int quantity) {
 		this(code, name, price);
 		this.quantity = quantity;
+	}
+
+	public ItemBean(int code, String name) {
+		this.code = code;
+		this.name = name;
 	}
 
 	/**

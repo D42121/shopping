@@ -192,5 +192,41 @@ public class ItemDAO {
 		}
 	}
 
+	public List<ItemBean> detailItem(int code) throws DAOException {
+		if (con ==  null ) getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "select * from item where code = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			rs = pstmt.executeQuery();
+			List<ItemBean> list = new ArrayList<ItemBean>();
+			while (rs.next()) {
+				int codeID = rs.getInt("code");
+				String name = rs.getString("name");
+				ItemBean bean = new ItemBean(codeID, name);
+				list.add(bean);
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました");
+		}finally {
+
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+				} catch (SQLException e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();
+					throw new DAOException("リソースの開放に失敗しました」");
+				}
+		}
+
+	}
 
 }
