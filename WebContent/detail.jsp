@@ -17,9 +17,9 @@
 <c:forEach items = "${item}" var = "item">
 	<form action="/shopping/CartServlet?action=add" method="post">
 	<input type="hidden" name="item_code" value="${item.code}" >
-		商品番号：<b>${item.code}</b><br>
-		商品名：<b>${item.name}</b><br>
-		<%--- 詳細内容：<b>${item.detail}</b><br> --%>
+		<b>商品番号</b>：${item.code}<br>
+		<b>商品名</b>：${item.name}<br>
+		<b>詳細内容</b>：${item.detail}<br>
 		<select name = "quantity">
 		<option value = "1">1
 		<option value = "2">2
