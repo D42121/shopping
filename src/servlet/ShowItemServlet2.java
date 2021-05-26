@@ -19,13 +19,13 @@ import dao.ItemDAO;
  * Servlet implementation class ShowItemServlet
  */
 @WebServlet("/ShowItemServlet2")
-public class ShowItemServlet extends HttpServlet {
+public class ShowItemServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowItemServlet() {
+    public ShowItemServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
