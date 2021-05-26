@@ -46,9 +46,10 @@ public class ItemBean {
 		this.quantity = quantity;
 	}
 
-	public ItemBean(int code, String name) {
+	public ItemBean(int code, String name, String detail) {
 		this.code = code;
 		this.name = name;
+		this.detail = detail;
 	}
 
 	/**

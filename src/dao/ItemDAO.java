@@ -207,7 +207,8 @@ public class ItemDAO {
 			while (rs.next()) {
 				int codeID = rs.getInt("code");
 				String name = rs.getString("name");
-				ItemBean bean = new ItemBean(codeID, name);
+				String detail = rs.getString("detail");
+				ItemBean bean = new ItemBean(codeID, name, detail);
 				list.add(bean);
 			}
 			return list;
