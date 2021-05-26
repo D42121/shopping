@@ -189,6 +189,7 @@ public class OrderDAO {
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+			throw new DAOException("レコードの取得をしました。");
 		}finally {
 				try {
 
@@ -199,12 +200,10 @@ public class OrderDAO {
 				} catch (SQLException e) {
 					// TODO 自動生成された catch ブロック
 					e.printStackTrace();
+					throw new DAOException("リソースの開放に失敗しました。");
 				}
 		}
-		return deriveryDate;
 
 	}
-
-
 
 }
