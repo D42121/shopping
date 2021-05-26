@@ -87,4 +87,14 @@ public class ItemBean {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+
 }
