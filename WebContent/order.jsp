@@ -13,8 +13,9 @@
 
 	<h3>ご注文ありがとうございました。</h3>
 	<p>お客様の注文番号は</p>
-	<h3>${orderNumber}</h3>
+	<h3>${orderNumber} ${deliveryDate}</h3>
 	<p>になります。</p>
+
 
 </body>
 </html>

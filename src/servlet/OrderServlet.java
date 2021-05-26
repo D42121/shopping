@@ -100,8 +100,10 @@ public class OrderServlet extends HttpServlet {
 				// 注文を確定
 				OrderDAO dao = new OrderDAO();
 				int orderNumber = dao.saveOrder(customer, cart);
+				String deliveryDate = dao.getDeliveryDate();
 				// リクエストスコープに注文番号を登録
 				request.setAttribute("orderNumber", orderNumber);
+				request.setAttribute("deliveryDate", deliveryDate);
 
 				// 注文後、セッション情報をクリア
 				session.removeAttribute("cart");

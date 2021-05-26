@@ -102,7 +102,7 @@ public class OrderDAO {
 			pstmt.close();
 
 			// 注文情報をorderテーブに追加
-			sql = "insert into ordered values (?, ?, ?, ?)";
+			sql = "insert into ordered values (?, ?, ?, ?, ?)";
 			pstmt = this.con.prepareStatement(sql);
 			// プレースホルダの設定
 			pstmt.setInt(1, orderNumber);
@@ -110,6 +110,7 @@ public class OrderDAO {
 			Date today = new Date(System.currentTimeMillis());
 			pstmt.setDate(3, today);
 			pstmt.setInt(4, cart.getTotal());
+			pstmt.setString(5, String.valueOf(customer.getYear()) + "年" + String.valueOf(customer.getMonth()) + "月" + String.valueOf(customer.getDate()) + "日" );
 			// SQLの実行
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -158,6 +159,50 @@ public class OrderDAO {
 			this.con.close();
 			this.con = null;
 		}
+	}
+
+	public String getDeliveryDate() throws DAOException {
+		if(con == null)	getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+		String deriveryDate = "";
+
+		try {
+			String sql = "select max(code) from ordered";
+			pstmt = con.prepareStatement(sql);
+			rs1 = pstmt.executeQuery();
+			int codeMax = 0;
+			while (rs1.next()) {
+				 codeMax = rs1.getInt(1);
+			}
+			sql = "select delivery_date from ordered where code = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, codeMax);
+			rs2 = pstmt.executeQuery();
+			while (rs2.next()) {
+				deriveryDate = rs2.getString(1);
+			}
+			return deriveryDate;
+
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}finally {
+				try {
+
+					if (rs1 != null) rs1.close();
+					if (rs2 != null) rs2.close();
+					if (pstmt != null) pstmt.close();
+					close();
+				} catch (SQLException e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();
+				}
+		}
+		return deriveryDate;
+
 	}
 
 
