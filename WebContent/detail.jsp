@@ -19,6 +19,7 @@
 	<input type="hidden" name="item_code" value="${item.code}" >
 		<b>商品番号</b>：${item.code}<br>
 		<b>商品名</b>：${item.name}<br>
+		<b>商品価格</b>：${item.price}円<br>
 		<b>詳細内容</b>：${item.detail}<br>
 		<select name = "quantity">
 		<option value = "1">1
