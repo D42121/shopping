@@ -16,9 +16,9 @@
 	<form action="/shopping/CartServlet?action=add" method="post">
 		商品番号：${item.code}<br />
 		商品名：${item.name}<br />
-		<!--<a href= "/shopping/ShowItemServlet?action=detail&,">（作品詳細）</a>-->
 		価格（税込）：${item.price}円<br />
-		個数：
+		<a href= "/shopping/ShowItemServlet2?action=detail&code=${item.code}">（作品詳細）</a><br/>
+		個数：<br/>
 		<select name="quantity">
 			<option value="1">1</option>
 			<option value="2">2</option>

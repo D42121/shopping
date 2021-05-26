@@ -39,24 +39,40 @@ public class ShowItemServlet2 extends HttpServlet {
 
 		// actionキーが「top」またはパラメータが存在しない場合はトップページに遷移
 		if (action == null || action.length() == 0 || action.equals("top")) {
-			gotoPage(request, response, "top.jsp");
+			gotoPage(request, response, "/top.jsp");
 
 		// actionキーが「list」の場合：商品一覧に遷移
-		} else if (action.equals("detail")) {
+		}  else if (action.equals("list")) {
 			// リクエストパラメータを取得
 			String code = request.getParameter("code");
-			int itemCode = Integer.parseInt(request.getParameter("code"));
+			int categoryCode = Integer.parseInt(code);
+			try {
+				ItemDAO dao = new ItemDAO();
+				List<ItemBean> list = dao.findByCategory(categoryCode);
+				// リクエストスコープに商品リストを登録
+				 request.setAttribute("items", list);
+				// 商品一覧に遷移
+				gotoPage(request, response, "/list2.jsp");
+			} catch (DAOException e) {
+				e.printStackTrace();
+				request.setAttribute("message", "内部エラーが発生しました。");
+				gotoPage(request, response, "/errInternal.jsp");
+			}
+		} else if (action.equals("detail")) {
+			// リクエストパラメータを取得
+			String itemCodestr = request.getParameter("code");
+			int itemCode = Integer.parseInt(itemCodestr);
 			try {
 				ItemDAO dao = new ItemDAO();
 				List<ItemBean> list = dao.detailItem(itemCode);
 				// リクエストスコープに商品リストを登録
 				 request.setAttribute("item", list);
 				// 商品一覧に遷移
-				gotoPage(request, response, "detail.jsp");
+				gotoPage(request, response, "/detail.jsp");
 			} catch (DAOException e) {
 				e.printStackTrace();
 				request.setAttribute("message", "内部エラーが発生しました。");
-				gotoPage(request, response, "errInternal.jsp");
+				gotoPage(request, response, "/errInternal.jsp");
 			}
 		}
 	}
