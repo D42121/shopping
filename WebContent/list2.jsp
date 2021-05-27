@@ -17,7 +17,7 @@
 		商品番号：${item.code}<br />
 		商品名：${item.name}<br />
 		価格（税込）：${item.price}円<br />
-		<a href= "/shopping/ShowItemServlet2?action=detail&code=${item.code}">（作品詳細）</a><br/>
+		<a href= "/shopping/ShowItemServlet2?action=detail&code=${item.code}">（商品詳細）</a><br/>
 		個数：<br/>
 		<select name="quantity">
 			<option value="1">1</option>

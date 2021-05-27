@@ -65,7 +65,7 @@
 			<tr>
 				<th>配送日</th>
 				<td><input type="text" name="year" size="5" value="2021" />年
-					<input type="text" name="month" size="5" value="1" />月
+					<input type="text" name="month" size="5" value="5" />月
 					<input type="text" name="date" size="5" value="1" />日
 				</td>
 			</tr>
