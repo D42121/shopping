@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -64,14 +67,38 @@ public class OrderServlet extends HttpServlet {
 
 		// actionキーが「confirm」の場合：入力情報確認画面に遷移
 		} else if (action.equals("confirm")) {
+			request.setCharacterEncoding("utf-8");
 			// リクエストパラメータの取得
 			String name = request.getParameter("name");
 			String address = request.getParameter("address");
 			String tel = request.getParameter("tel");
 			String email = request.getParameter("email");
-			int year = Integer.parseInt(request.getParameter("year"));
-			int month = Integer.parseInt(request.getParameter("month"));
-			int date = Integer.parseInt(request.getParameter("date"));
+			//追加内容のリクエストパラメータの取得
+			String yearString = request.getParameter("year");
+			String monthString = request.getParameter("month");
+			String dateString = request.getParameter("date");
+
+			//パラメータチェック
+			if (yearString == null || yearString.length() == 0 ||monthString == null
+					|| monthString.length() == 0 || dateString == null || dateString.length() == 0) {
+					request.setAttribute("message", "配送日が未入力です");
+					gotoPage(request, response, "/errInternal.jsp");
+					return;
+			}
+
+			int year = 0;
+			int month = 0;
+			int date = 0;
+			try {
+				year = Integer.parseInt(yearString);
+				month = Integer.parseInt(monthString);
+				date = Integer.parseInt(dateString);
+			}catch (NumberFormatException e) {
+				request.setAttribute("message", "整数を入力してください");
+				gotoPage(request, response, "/errInternal.jsp");
+				return;
+			}
+
 			CustomerBean customer = new CustomerBean();
 			customer.setName(name);
 			customer.setAddress(address);
@@ -80,6 +107,36 @@ public class OrderServlet extends HttpServlet {
 			customer.setYear(year);
 			customer.setMonth(month);
 			customer.setDate(date);
+
+			//当日の情報を取得する
+			try {
+				LocalDate today = LocalDate.now();
+
+				LocalDate calcDeliveryDate = LocalDate.of(customer.getYear(), customer.getMonth(), customer.getDate());
+
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+				int todayInt = Integer.parseInt(today.format(formatter));
+				int calcDeliveryDateInt = Integer.parseInt(calcDeliveryDate.format(formatter));
+
+				//０より小さい整数、8~69の間、76より大きい数はエラーの表示
+				if ( (calcDeliveryDateInt - todayInt) < 0 ||
+					 ((calcDeliveryDateInt - todayInt) >= 8  && (calcDeliveryDateInt - todayInt) <= 69)
+					 || (calcDeliveryDateInt - todayInt) > 76) {
+
+					request.setAttribute("message", "1週間以内にしてください");
+					gotoPage(request, response, "/errInternal.jsp");
+					return;
+					}
+			}catch(DateTimeException e) {
+				e.printStackTrace();
+				request.setAttribute("message", "そのような年月日はありません");
+				gotoPage(request, response, "/errInternal.jsp");
+				return;
+			}
+
+
+
 			// セッションスコープに顧客情報を登録
 			session.setAttribute("customer", customer);
 			// 確認画面に遷移
